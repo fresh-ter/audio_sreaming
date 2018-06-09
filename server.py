@@ -1,5 +1,6 @@
 import pyaudio
 import socket
+import random
 
 frames = 256
 
