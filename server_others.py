@@ -210,6 +210,16 @@ def bufferCommand(): # Command <buffer>
 	except Exception as EOFError:
 		pass
 
+def passwordCommand(): # Command <buffer>
+	global PASSWORT
+
+	try:
+		PASSWORT = str(getpass("Enter new PASSWORT: "))
+	except Exception as TypeError:
+		print(i, "not number!")
+	except Exception as EOFError:
+		pass
+
 
 def interface():
 	while True:
@@ -232,6 +242,9 @@ def interface():
 		elif command == 'connections':
 			pass
 			#printConnections()
+		elif command == 'password':
+			if login() == 1234:
+				passwordCommand()
 		elif command == 'send':
 			if login() == 1234:
 				sendCommand()
