@@ -181,24 +181,27 @@ def sendCommandOneUsers(msg, i): # msg != msg.encode("utf-8"), i = int(i)
 def sendCommand():
 	print()
 	print("Connected", CONNECTS, "users")
-	
-	try:
-		i = input("Enter number CONNECTS   (int or <all>)  : ")
-	except EOFError:
-		pass
-	print()
 
-	msg = str(input("Enter <command> for <User>: "))
-
-	if str(i) == "all":
-		sendCommandAllUsers(msg)
-	else:
+	if CONNECTS > 0:
 		try:
-			sendCommandOneUsers(msg, int(i))
-		except ValueError:
-			print(i, "not number!")
+			i = input("Enter number CONNECTS   (int or <all>)  : ")
 		except EOFError:
 			pass
+		print()
+
+		msg = str(input("Enter <command> for <User>: "))
+
+		if str(i) == "all":
+			sendCommandAllUsers(msg)
+		else:
+			try:
+				sendCommandOneUsers(msg, int(i))
+			except ValueError:
+				print(i, "not number!")
+			except EOFError:
+				pass
+	else:
+		print("No CONNECTS!")
 
 def bufferCommand(): # Command <buffer>
 	global BUFFER_SIZE
