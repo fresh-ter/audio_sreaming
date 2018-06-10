@@ -15,18 +15,6 @@ window.resize(300 , 100)
 with open(r"c:\audio_streaming\color.txt", 'r', encoding='utf-8') as f:
     color_list = json.load(f)
 
-# color_list = {1 : "#ff0000",
-# 			  2 : "#008000",
-# 			  3 : "#483d8b",
-# 			  4 : "#6a5acd",
-# 			  5 : "#800080",
-# 			  6 : "#ffffff",
-# 			  7 : "#ffff00",
-# 			  8 : "#ff8c00",
-# 			  9 : "#ff60cb"}
-
-color_num = ('1','2','3','4','5','6','7','8','9')
-
 with open(r"c:\audio_streaming\number_color.txt", 'r', encoding='utf-8') as f:
     numberColor = json.load(f)
 
@@ -39,8 +27,8 @@ window.setPalette(pal)
 
 
 def tick():
-	#print('tick')
 	s = ''
+	
 	f = open(r"c:\audio_streaming\a.txt", "r", encoding="utf-8")
 	for line in f:
 		s += line
