@@ -92,8 +92,16 @@ def printConnections(): # Command <connections> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	print()
 	print("________Connections________")
 	for number in range(CONNECTS):
+		obj = connect_list[number]
+		obj.send(str("test").encode('utf-8'))
+		m = obj.recv(1024)
 
-		print(number, "|", address_list[number])
+		m = m.decode("utf-8")
+		if m == '0':
+			User = '+'
+		else:
+			User = '-'
+		print(number, "|", User)
 
 def msgUser(msg): # msg != msg.decode("utf-8")
 	msg = msg.decode("utf-8")
@@ -226,8 +234,8 @@ def interface():
 		elif command == 'list':
 			printList()
 		elif command == 'connections':
-			pass
-			#printConnections()
+			if login() == 1234:
+				printConnections()
 		elif command == 'password':
 			if login() == 1234:
 				passwordCommand()
