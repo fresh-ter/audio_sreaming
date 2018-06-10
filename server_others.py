@@ -178,7 +178,7 @@ def sendCommandOneUsers(msg, i): # msg != msg.encode("utf-8"), i = int(i)
 
 		print(i, "|", User)
 
-def sendCommand():
+def sendCommand(): # Command <send>
 	print()
 	print("Connected", CONNECTS, "users")
 
@@ -213,7 +213,7 @@ def bufferCommand(): # Command <buffer>
 	except Exception as EOFError:
 		pass
 
-def passwordCommand(): # Command <buffer>
+def passwordCommand(): # Command <password>
 	global PASSWORT
 
 	try:
