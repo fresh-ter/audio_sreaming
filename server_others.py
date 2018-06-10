@@ -18,7 +18,7 @@ LISTEN = None
 CONNECTS = 0
 THREAD = None
 
-index = 0
+BUFFER_SIZE = 1024
 
 STATUS = 0
 # 0 - no SOCKET
@@ -26,45 +26,13 @@ STATUS = 0
 # 2 - created SOCKET and connectThread, but no  no CONNECTS
 # 3 - created SOCKET, connectThread, and have CONNECTS
 
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#	Commands for <User>
+#
+#	test
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-def printInfo():
-	s = None
-	if STATUS == 0:
-		s = "No SOCKET!"
-	elif STATUS == 1:
-		s = "SOCKET created | No connectThread | No CONNECTS"
-	elif STATUS == 2:
-		s = "SOCKET created | connectThread created | No CONNECTS"
-	elif STATUS == 3:
-		s = "SOCKET created | connectThread created | CONNECTS > 0"
-	else:
-		s = "ERROR!!!"
-
-	print()
-	print("________INFO________")
-	print("STATUS:", s)
-	print("IP sever`s:", IP)
-	print("PORT sever`s:", PORT)
-	print("LISTEN sever`s:", LISTEN)
-	print("PASSWORT sever`s:", PASSWORT)
-	print("CONNECTS sever`s:", CONNECTS)
-	print()
-
-def printHelp():
-	print()
-	print("________Commands________")
-	print("connect")
-	print("info")
-	print("help")
-	print("list")
-
-def printList():
-	print()
-	print("________List________")
-	for number in range(CONNECTS):
-		print(address_list[number])
-
-def login():
+def login(): # Сonfirmation
 	global PASSWORT
 
 	i = 0
@@ -79,28 +47,65 @@ def login():
 
 	print("Authorization completed unsuccessfully!")
 
+def printInfo(): # Command <info>
+	s = None
+	if STATUS == 0:
+		s = "No SOCKET!"
+	elif STATUS == 1:
+		s = "SOCKET created | No connectThread | No CONNECTS"
+	elif STATUS == 2:
+		s = "SOCKET created | connectThread created | No CONNECTS"
+	elif STATUS == 3:
+		s = "SOCKET created | connectThread created | CONNECTS = " + str(CONNECTS)
+	else:
+		s = "ERROR!!!"
 
-def connected(i):
-	index = 0
+	print()
+	print("________INFO________")
+	print("STATUS:", s)
+	print("IP sever`s:", IP)
+	print("PORT sever`s:", PORT)
+	print("LISTEN sever`s:", LISTEN)
+	print("PASSWORT sever`s:", PASSWORT)
+	print("CONNECTS sever`s:", CONNECTS)
+	print("BUFFER_SIZE sever`s:", BUFFER_SIZE)
+	print()
 
-	if i > 19:
-		i = 19
-	if i == 0:
-		i = 19
+def printHelp(): # Command <help>
+	print()
+	print("________Commands________")
+	print("connect")
+	print("info")
+	print("help")
+	print("list")
+	print("connections")
+	print("buffer")
+	print("password")
 
-	while index < i:
-		connect_list[index] , address_list[index] = sock.accept()
-		index += 1
+def printList(): # Command <list>
+	print()
+	print("________List________")
+	for number in range(CONNECTS):
+		print(number, "|", address_list[number])
 
+def printConnections(): # Command <connections> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	print()
+	print("________Connections________")
+	for number in range(CONNECTS):
 
-def ret(msg):
-	if msg == '0':
-		print("Sehr gut!")
-	elif msg == '1':
-		print("<Client> hat dich nicht versteht!")
-	elif msg == '2':
-		print("Hast du nicht versteht?!")
+		print(number, "|", address_list[number])
 
+def msgUser(msg): # msg != msg.decode("utf-8")
+	msg = msg.decode("utf-8")
+
+	if msg == '0': # Connected successfully!
+		return "<Client> connected successfully!"
+	elif msg == '1': # User doesn't know <Command>
+		return "<Client> hat dich nicht versteht!"
+	elif msg == '2': # Error user`s
+		return "<Client> ERROR!"
+	elif msg == '3': # User know <Command>
+		return "<Client> understand you!"
 
 def send_one_computer(msg, num):
 	obj = connect_list[num]
@@ -119,24 +124,10 @@ def computer():
 	else:
 		return "qwerty"
 
-class ConnectUsersThread(threading.Thread):
+class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 	def __init__(self):
 		threading.Thread.__init__(self)
 		self.daemon = True
-
-	def connectingUsersThread():
-		global connect_list
-		global address_list
-		global CONNECTS
-		global STATUS
-
-		while True:
-			connect , address = SOCKET.accept()
-			connect_list.append(connect)
-			address_list.append(address)
-
-			CONNECTS += 1
-			STATUS = 3
 
 	def run(self):
 		global connect_list
@@ -144,6 +135,8 @@ class ConnectUsersThread(threading.Thread):
 		global CONNECTS
 		global STATUS
 
+		print("ConnectUsersThread created successfully!")
+
 		while True:
 			connect , address = SOCKET.accept()
 			connect_list.append(connect)
@@ -152,7 +145,7 @@ class ConnectUsersThread(threading.Thread):
 			CONNECTS += 1
 			STATUS = 3
 
-def connectCommand():
+def connectCommand(): # Command <connect>
 	global THREAD
 	global STATUS
 
@@ -161,12 +154,62 @@ def connectCommand():
 
 	STATUS = 2
 
+def sendCommandAllUsers(msg): # msg != msg.encode("utf-8")
+	print("________Send all <User>________")
+
+	for number in range(CONNECTS):
+		obj = connect_list[number]
+		obj.send(msg.encode('utf-8'))
+		m = obj.recv(1024)
+
+		User = msgUser(m)
+
+		print(number, "|", User)
+
+def sendCommandOneUsers(msg, i): # msg != msg.encode("utf-8"), i = int(i)
+	print("________Send", i, "<User>________")
+
+	if i>=0 and i<CONNECTS:
+		obj = connect_list[i]
+		obj.send(msg.encode('utf-8'))
+		m = obj.recv(1024)
+
+		User = msgUser(m)
+
+		print(i, "|", User)
+
 def sendCommand():
 	print()
-	print("Connected" + CONNECTS + "users")
+	print("Connected", CONNECTS, "users")
+	
+	try:
+		i = input("Enter number CONNECTS   (int or <all>)  : ")
+	except EOFError:
+		pass
+	print()
 
-	i = input("Enter number CONNECTS   (int or <all>)  : ")
-	connected(i)
+	msg = str(input("Enter <command> for <User>: "))
+
+	if str(i) == "all":
+		sendCommandAllUsers(msg)
+	else:
+		try:
+			sendCommandOneUsers(msg, int(i))
+		except ValueError:
+			print(i, "not number!")
+		except EOFError:
+			pass
+
+def bufferCommand(): # Command <buffer>
+	global BUFFER_SIZE
+
+	try:
+		i = int(input("Enter new BUFFER_SIZE: "))
+		BUFFER_SIZE = i
+	except Exception as TypeError:
+		print(i, "not number!")
+	except Exception as EOFError:
+		pass
 
 
 def interface():
@@ -187,12 +230,15 @@ def interface():
 			printHelp()
 		elif command == 'list':
 			printList()
+		elif command == 'connections':
+			pass
+			#printConnections()
 		elif command == 'send':
-			p = input("Passwort: ")
-			if p == passwort:
-				data_get = computer()
-				if data_get != "qwerty":
-					ret(data_get.decode("utf-8"))
+			if login() == 1234:
+				sendCommand()
+		elif command == 'buffer':
+			if login() == 1234:
+				bufferCommand()
 		elif not command:
 			print("You not enter command!")
 			continue
@@ -213,6 +259,7 @@ def createSocket():
 	PORT = int(input("PORT: "))
 	LISTEN = int(input("LISTEN: "))
 
+	print()
 	print("Creating Socket...")
 
 	SOCKET.bind((IP , PORT))
