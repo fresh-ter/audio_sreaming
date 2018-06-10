@@ -88,7 +88,7 @@ def printList(): # Command <list>
 	for number in range(CONNECTS):
 		print(number, "|", address_list[number])
 
-def printConnections(): # Command <connections> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+def printConnections(): # Command <connections>
 	print()
 	print("________Connections________")
 	for number in range(CONNECTS):
