@@ -6,14 +6,11 @@ import random
 import json
 
 
-
-
 app = QtWidgets.QApplication(sys.argv)
 window = QtWidgets.QWidget()
 window.setWindowTitle("Hallo PyQt und Color")
 window.resize(300 , 100)
 
-# ni = 1
 
 with open(r"c:\audio_streaming\color.txt", 'r', encoding='utf-8') as f:
     color_list = json.load(f)
@@ -30,15 +27,15 @@ with open(r"c:\audio_streaming\color.txt", 'r', encoding='utf-8') as f:
 
 color_num = ('1','2','3','4','5','6','7','8','9')
 
+with open(r"c:\audio_streaming\number_color.txt", 'r', encoding='utf-8') as f:
+    numberColor = json.load(f)
+
 pal = window.palette()
 pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
 			 QtGui.QColor(color_list.get('2')))
 pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window,
 			 QtGui.QColor("#ff0000"))
 window.setPalette(pal)
-
-#a = 0
-
 
 
 def tick():
@@ -53,10 +50,10 @@ def tick():
 			 	QtGui.QColor(color_list.get(str(random.randint(1,9)))))
 		window.setPalette(pal)
 	elif s != 'none':
-		for color in color_num:
-			if s == color:
+		for color in range(number_color+1):
+			if s == str(color):
 				pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-			 			QtGui.QColor(color_list.get(color)))
+			 			QtGui.QColor(color_list.get(str(color))))
 				window.setPalette(pal)
 
 timer = QTimer()
