@@ -204,8 +204,7 @@ def bufferCommand(): # Command <buffer>
 	global BUFFER_SIZE
 
 	try:
-		i = int(input("Enter new BUFFER_SIZE: "))
-		BUFFER_SIZE = i
+		BUFFER_SIZE = int(input("Enter new BUFFER_SIZE: "))
 	except Exception as TypeError:
 		print(i, "not number!")
 	except Exception as EOFError:
