@@ -107,23 +107,6 @@ def msgUser(msg): # msg != msg.decode("utf-8")
 	elif msg == '3': # User know <Command>
 		return "<Client> understand you!"
 
-def send_one_computer(msg, num):
-	obj = connect_list[num]
-	obj.send(msg.encode("utf-8"))
-	return obj.recv(1024)
-
-
-def computer():
-	num_comp = input("Enter <number> computer`s  (int <= 19  oder  int == !100!)  : ")
-	data = input("Enter command: ")
-	num_comp = int(num_comp)
-
-	if num_comp <= 19 and num_comp > 0:
-		num_comp -= 1
-		return send_one_computer(data, num_comp)
-	else:
-		return "qwerty"
-
 class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 	def __init__(self):
 		threading.Thread.__init__(self)
