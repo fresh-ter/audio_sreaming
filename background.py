@@ -32,7 +32,7 @@ color_num = ('1','2','3','4','5','6','7','8','9')
 
 pal = window.palette()
 pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-			 QtGui.QColor(color_list.get(2)))
+			 QtGui.QColor(color_list.get('2')))
 pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window,
 			 QtGui.QColor("#ff0000"))
 window.setPalette(pal)
@@ -50,13 +50,13 @@ def tick():
 
 	if s == 'none':
 		pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-			 	QtGui.QColor(color_list.get(random.randint(1,9))))
+			 	QtGui.QColor(color_list.get(str(random.randint(1,9)))))
 		window.setPalette(pal)
 	elif s != 'none':
 		for color in color_num:
 			if s == color:
 				pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-			 			QtGui.QColor(color_list.get(int(color))))
+			 			QtGui.QColor(color_list.get(color)))
 				window.setPalette(pal)
 
 timer = QTimer()
