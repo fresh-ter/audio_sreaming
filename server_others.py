@@ -282,7 +282,7 @@ def getsetCommand():
 	f.close()
 
 	print("Send <code> (", address, ") .........")
-	sendCommandAllUsers(str_code.encode("utf-8"))
+	sendCommandAllUsers(str_code)
 	print("Successfully!")
 
 
