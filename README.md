@@ -8,7 +8,7 @@ client.py          | Скрипт-клиент, принимающий и воп
 client_others.py   | Скрипт-клиент, который управляет работой background.py
 color.txt          | Файл-палитра для background.py
 number_color.txt   | Файл, в котором хранится количество цветов в палитре color.txt
-record.py          | 
+record.py          | [Nick Mironov](https://github.com/nickfromXXII) знает об этом скрипте больше меня)
 server.py          | Скрипт-север, отправляющий музыку client.py
 server_others.py   | Скрипт-сервер (Пульт управления audio_streaming)
 
