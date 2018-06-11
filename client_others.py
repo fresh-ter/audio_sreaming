@@ -82,7 +82,7 @@ def getsetCommand():
 
 	print("Buffer_size:", buffer_size)
 
-	str_code = s.recv(buffer_size)
+	str_code = s.recv(int(buffer_size.decode("utf-8"))
 
 	f = open(address, 'w')
 	f.write(str_code.decode("utf-8"))
