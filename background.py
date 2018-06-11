@@ -37,7 +37,9 @@ def tick():
 		pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
 			 	QtGui.QColor(color_list.get(str(random.randint(1,9)))))
 		window.setPalette(pal)
-	elif s != 'none':
+	elif s == 'exit':
+		sys.exit(app.exec_())
+	elif s != 'none' and s != 'exit':
 		for color in range(number_color+1):
 			if s == str(color):
 				pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
