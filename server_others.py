@@ -2,6 +2,7 @@
 from getpass import getpass
 import threading
 import time
+from os import system
 
 import socket
 
@@ -86,6 +87,7 @@ def printHelp(): # Command <help>
 	print("connections")
 	print("buffer")
 	print("password")
+	print("cls")
 
 def printList(): # Command <list>
 	print()
@@ -228,6 +230,9 @@ def exitCommand():
 	s1.close()
 	time.sleep(5)
 
+def clsCommand():
+	system("cls")
+
 
 def interface():
 	
@@ -263,6 +268,8 @@ def interface():
 		elif command == 'buffer':
 			if login() == 1234:
 				bufferCommand()
+		elif command == 'cls':
+			clsCommand()
 		elif not command:
 			print("You not enter command!")
 			continue
