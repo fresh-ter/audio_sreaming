@@ -30,6 +30,9 @@ STATUS = 0
 #	Commands for <User>
 #
 #	test
+#	color none
+#	color 1
+#	exit
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def login(): # Сonfirmation
