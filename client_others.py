@@ -126,8 +126,8 @@ if p == passwort:
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
 	print("NUMBER_COMPUTER:", NUMBER_COMPUTER)
 
-	m = s.recv(1024)
-	print(decode(m))
+	# m = s.recv(1024)
+	# print(decode(m))
 
 	s.send(DATE.encode("utf-8"))
 	print("DATE:", DATE)
