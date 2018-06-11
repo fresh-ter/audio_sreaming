@@ -92,7 +92,7 @@ def getsetCommand():
 
 def commandMsg(msg):
 	print("Msg:", msg)
-	for d in ("color" , "volume" , "test"):
+	for d in ("color" , "volume" , "test", "getset"):
 		if d in msg and d == "color":
 			colorCommand(msg)
 			return 3
