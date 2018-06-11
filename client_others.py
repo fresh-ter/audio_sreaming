@@ -15,6 +15,8 @@ passwort = "client"
 IP = None    	############################################################################ /=)
 PORT = 9090     ############################################################################ \=)
 
+s = socket.socket()
+
 print("NAME_CLIENT:" + NAME_CLIENT)
 IP = str(input("Enter IP server`s: "))
 NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
@@ -28,7 +30,7 @@ def decode(msg):
 	return msg.decode("utf-8")
 
 def colorCommand(msg):
-	print("color_disp")
+	print("Command <color>")
 	if "start" in msg:
 		print("Start color")
 		system("start c:\\Python34\\python.exe c:\\audio_streaming\\background.py")
@@ -50,10 +52,36 @@ def colorCommand(msg):
 
 
 def volumeCommand(msg):
-	print("volume_sys")
+	print("Command <volume>")
 
 def testCommand():
-	print("test")
+	print("Command <test>")
+
+def getsetCommand():
+	print("Command <getset>")
+
+	m = '3'
+	m = m.encode("utf-8")
+
+	s.send(m)
+	
+	address = s.recv(2048)
+	address = decode(address)
+	s.send(m)
+
+	print("Address:", address)
+
+	buffer_size = s.recv(2048)
+	s.send(m)
+
+	print("Buffer_size:", buffer_size)
+
+	str_code = s.recv(buffer_size)
+
+	f = open(address, 'w')
+ 	f.write(str_code.decode("utf-8"))
+ 	f.close()
+
 
 
 def commandMsg(msg):
@@ -67,6 +95,9 @@ def commandMsg(msg):
 		elif d in msg and d == 'test':
 			testCommand()
 			return 0
+		elif d in msg and d == "getset":
+			getsetCommand(msg)
+			return 3
 		
 	return 1
 	
@@ -78,12 +109,13 @@ p = input("Passwort: ")
 
 if p == passwort:
 	
-	s = socket.socket()
+	
 	s.connect((IP , PORT))
 	s.send(NAME_CLIENT.encode("utf-8"))
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
 	
 	print("Hello world!")
+	print("-------------------------------------")
 
 	while True:
 		data = s.recv(1024)
@@ -96,7 +128,7 @@ if p == passwort:
 			if decode(data) == 'exit':
 				print("exit")
 
-				colorCommand("exit")
+				#colorCommand("exit")
 
 				codeStr = "3"
 				s.send(codeStr.encode("utf-8"))

