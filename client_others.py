@@ -91,6 +91,7 @@ def getsetCommand():
 
 
 def commandMsg(msg):
+	print("Msg:", msg)
 	for d in ("color" , "volume" , "test"):
 		if d in msg and d == "color":
 			colorCommand(msg)
