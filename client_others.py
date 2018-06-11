@@ -80,7 +80,7 @@ def getsetCommand():
 	buffer_size = s.recv(2048)
 	s.send(m)
 
-	print("Buffer_size:", buffer_size)
+	print("Buffer_size:", int(buffer_size.decode("utf-8")))
 
 	str_code = s.recv(int(buffer_size.decode("utf-8")))
 
@@ -114,6 +114,9 @@ def commandMsg(msg):
 
 p = input("Passwort: ")
 
+print()
+print()
+
 if p == passwort:
 	print("IP:", IP)
 	print("PORT:", PORT)
@@ -126,13 +129,21 @@ if p == passwort:
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
 	print("NUMBER_COMPUTER:", NUMBER_COMPUTER)
 
+	print()
+
 	m = s.recv(1024)
 	print(decode(m))
 
+	print()
+
 	s.send(DATE.encode("utf-8"))
 	print("DATE:", DATE)
+
+	print()
+	print()
 	
 	print("Hello world!")
+	print()
 	print("-------------------------------------")
 
 	while True:

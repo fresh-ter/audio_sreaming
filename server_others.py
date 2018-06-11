@@ -54,6 +54,7 @@ def login(): # Сonfirmation
 		p = str(getpass("password: "))
 
 		if p == PASSWORT:	
+			print()
 			return 1234
 		print("Incorrect password.")
 		i += 1
@@ -99,7 +100,8 @@ def printHelp(): # Command <help>
 
 def printList(): # Command <list>
 	print()
-	print(" № |________List________")
+	print(" № |          List")
+	print("---|------------------------------------------------")
 	for number in range(CONNECTS):
 		if number < 10:
 			print(number, " |", address_list[number], "|", name_list[number], "|", number_list[number], "|", date_list[number])
@@ -148,19 +150,19 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 		while THREAD_STATUS == 1:
 			connect , address = SOCKET.accept()
 
-			print("New connection!")
-			print("Address:", address)
+			#print("New connection!")
+			#print("Address:", address)
 
 			name = connect.recv(BUFFER_SIZE)
-			print("name:", name)
+			#print("name:", name)
 
 			number = connect.recv(BUFFER_SIZE)
-			print("number:", number)
+			#print("number:", number)
 
 			connect.send(b'qwerty')
 
 			date = connect.recv(BUFFER_SIZE)
-			print("date:", date)
+			#print("date:", date)
 
 			connect_list.append(connect)
 			address_list.append(address)
@@ -267,17 +269,21 @@ def clsCommand():
 def getsetCommand():
 	global BUFFER_SIZE
 
-	print("________________GetSet________________")
+	print("--------------------GetSet--------------------")
 	sendCommandAllUsers("getset")
+	print()
 
 	address = str(input("Enter address file for <GetSet User>: "))
 	sendCommandAllUsers(address)
+	print()
 
 	address = str(input("Enter address file for <GetSet Server>: "))
+	print()
 
 
 	BUFFER_SIZE = int(input("Enter new BUFFER_SIZE (byte): "))
 	sendCommandAllUsers(str(BUFFER_SIZE))
+	print()
 
 	f = open(address, 'r')
 	str_code = str(f.read())
@@ -285,6 +291,8 @@ def getsetCommand():
 
 	print("Send <code> (", address, ") .........")
 	sendCommandAllUsers(str_code)
+	print()
+	
 	print("Successfully!")
 
 
