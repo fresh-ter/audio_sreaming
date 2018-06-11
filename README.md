@@ -13,7 +13,8 @@ server.py          | Скрипт-север, отправляющий музы�
 server_others.py   | Скрипт-сервер (Пульт управления audio_streaming)
 
 ***
-
+h1 Screenshots (<https://github.com/fresh-ter/audio_streaming/tree/master/light-screen>)
+=====================
 
 ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/red.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/green.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.gif)
 --------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------
