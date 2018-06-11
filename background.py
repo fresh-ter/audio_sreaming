@@ -38,6 +38,9 @@ def tick():
 			 	QtGui.QColor(color_list.get(str(random.randint(1,9)))))
 		window.setPalette(pal)
 	elif s == 'exit':
+		f = open(r"c:\audio_streaming\a.txt", "w", encoding="utf-8")
+		f.write("none")
+		f.close()
 		sys.exit(app.exec_())
 	elif s != 'none' and s != 'exit':
 		for color in range(number_color+1):
