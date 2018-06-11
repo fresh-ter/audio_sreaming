@@ -21,3 +21,6 @@ index.html      | Индексный файл для проверки вноси
 
 
 
+![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/sky_blue.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/violet.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/white.gif)
+-------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------
+
