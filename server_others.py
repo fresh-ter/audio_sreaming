@@ -152,8 +152,13 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			print("Address:", address)
 
 			name = connect.recv(1024)
+			print("name:", name)
+
 			number = connect.recv(1024)
+			print("number:", number)
+
 			date = connect.recv(1024)
+			print("date:", date)
 
 			connect_list.append(connect)
 			address_list.append(address)

@@ -116,12 +116,17 @@ if p == passwort:
 	
 	print("IP:", IP)
 	print("PORT:", PORT)
-	
+
 	s.connect((IP , PORT))
 
 	s.send(NAME_CLIENT.encode("utf-8"))
+	print("NAME_CLIENT:", NAME_CLIENT)
+
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
+	print("NUMBER_COMPUTER:", NUMBER_COMPUTER)
+
 	s.send(DATE.encode("utf-8"))
+	print("DATE:", DATE)
 	
 	print("Hello world!")
 	print("-------------------------------------")
