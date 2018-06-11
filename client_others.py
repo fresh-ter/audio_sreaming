@@ -57,7 +57,7 @@ def commandMsg(msg):
 			return 3
 		elif d in msg and d == 'test':
 			testCommand()
-			return 0
+			return 5
 		else:
 			return 1
 	
