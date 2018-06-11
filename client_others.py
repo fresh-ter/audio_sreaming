@@ -114,8 +114,11 @@ p = input("Passwort: ")
 
 if p == passwort:
 	
+	print("IP:", IP)
+	print("PORT:", PORT)
 	
 	s.connect((IP , PORT))
+
 	s.send(NAME_CLIENT.encode("utf-8"))
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
 	s.send(DATE.encode("utf-8"))

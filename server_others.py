@@ -148,6 +148,9 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 		while THREAD_STATUS == 1:
 			connect , address = SOCKET.accept()
 
+			print("New connection!")
+			print("Address:", address)
+
 			name = connect.recv(1024)
 			number = connect.recv(1024)
 			date = connect.recv(1024)
