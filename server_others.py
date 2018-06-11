@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from getpass import getpass
 import threading
+import time
 
 import socket
 
@@ -219,10 +220,18 @@ def passwordCommand(): # Command <password>
 	except Exception as EOFError:
 		pass
 
+def exitCommand():
+	global THREAD_STATUS
+	THREAD_STATUS = 0
+	s1 = socket.socket()
+	s1.connect(("127.0.0.1", 9090))
+	s1.close()
+	time.sleep(5)
+
 
 def interface():
-	global THREAD_STATUS
 	
+
 	while True:
 		try:
 			command = str(input("Enter command: "))
@@ -230,7 +239,8 @@ def interface():
 			pass
 
 		if command == 'exit':
-			THREAD_STATUS = 0
+			if login() == 1234:
+				exitCommand()
 			break		
 		elif command == 'connect':
 			if login() == 1234:
