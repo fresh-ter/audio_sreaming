@@ -58,7 +58,9 @@ def commandMsg(msg):
 		elif d in msg and d == 'test':
 			testCommand()
 			return 0
-	return 1
+		else:
+			return 1
+	
 
 
 
@@ -96,4 +98,3 @@ if p == passwort:
 
 	s.close()
 
-sys.exit(app.exec_())
