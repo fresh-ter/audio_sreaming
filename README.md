@@ -12,6 +12,8 @@ layout.css      | Основные стили, применительно к о�
 lightbox.css    | Стили лайтбокса, если таковой используется
 index.html      | Индексный файл для проверки вносимых изменений
 
+`Hello world`
+
 ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.bmp)
 
 
