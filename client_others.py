@@ -44,6 +44,7 @@ def colorCommand(msg):
 		f.write("none")
 		f.close()
 	elif "exit" in msg:
+		print("Exit color")
 		f = open(r"c:\audio_streaming\a.txt", "w", encoding="utf-8")
 		f.write("exit")
 		f.close()
@@ -101,7 +102,7 @@ def commandMsg(msg):
 			testCommand()
 			return 0
 		elif d in msg and d == "getset":
-			getsetCommand(msg)
+			getsetCommand()
 			return 3
 		
 	return 1
