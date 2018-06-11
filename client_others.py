@@ -73,7 +73,7 @@ if p == passwort:
 	print("Hello world!")
 
 	while True:
-		data = sock.recv(1024)
+		data = s.recv(1024)
 
 		if data:
 			print("Data " + str(n) + " : " + decode(data))
@@ -86,12 +86,12 @@ if p == passwort:
 				colorCommand("exit")
 
 				codeStr = "3"
-				sock.send(codeStr.encode("utf-8"))
+				s.send(codeStr.encode("utf-8"))
 				break
 
 			code = commandMsg(decode(data))
 			codeStr = str(code)
-			sock.send(codeStr.encode("utf-8"))
+			s.send(codeStr.encode("utf-8"))
 		print(1234)
 
 	s.close()
