@@ -6,6 +6,7 @@ from os import system
 
 NAME_CLIENT = "client main"
 NUMBER_COMPUTER = None
+DATE = None
 
 n = 0
 code = 0
@@ -23,6 +24,10 @@ NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
 
 f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
 f.write(str(NUMBER_COMPUTER))
+f.close()
+
+f = open(r"c:\audio_streaming\date.txt", "r", encoding="utf-8")
+DATE = str(f.read())
 f.close()
 
 
@@ -113,6 +118,7 @@ if p == passwort:
 	s.connect((IP , PORT))
 	s.send(NAME_CLIENT.encode("utf-8"))
 	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
+	s.send(DATE.encode("utf-8"))
 	
 	print("Hello world!")
 	print("-------------------------------------")
