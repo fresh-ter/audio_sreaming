@@ -43,7 +43,7 @@ def tick():
 		f.close()
 		sys.exit(app.exec_())
 	elif s != 'none' and s != 'exit':
-		for color in range(number_color):
+		for color in range(number_color)+1:
 			if s == str(color):
 				pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
 			 			QtGui.QColor(color_list.get(str(color))))
