@@ -48,7 +48,7 @@ def testCommand():
 
 
 def commandMsg(msg):
-	for d in ("color" , "volume"):
+	for d in ("color" , "volume" , "test"):
 		if d in msg and d == "color":
 			colorCommand(msg)
 			return 3
@@ -57,9 +57,9 @@ def commandMsg(msg):
 			return 3
 		elif d in msg and d == 'test':
 			testCommand()
-			return 5
-		else:
-			return 1
+			return 0
+		
+	return 1
 	
 
 
@@ -94,7 +94,7 @@ if p == passwort:
 			code = commandMsg(decode(data))
 			codeStr = str(code)
 			s.send(codeStr.encode("utf-8"))
-		print(1234)
+		print("-------------------------------------")
 
 	s.close()
 

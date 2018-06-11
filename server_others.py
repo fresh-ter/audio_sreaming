@@ -100,6 +100,7 @@ def printConnections(): # Command <connections>
 		m = obj.recv(1024)
 
 		m = m.decode("utf-8")
+
 		if m == '0':
 			User = '+'
 		else:
@@ -109,7 +110,7 @@ def printConnections(): # Command <connections>
 def msgUser(msg): # msg != msg.decode("utf-8")
 	msg = msg.decode("utf-8")
 
-	if msg == '5': # Connected successfully!
+	if msg == '0': # Connected successfully!
 		return "<Client> connected successfully!"
 	elif msg == '1': # User doesn't know <Command>
 		return "<Client> hat dich nicht versteht!"
