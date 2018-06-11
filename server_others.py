@@ -17,6 +17,7 @@ PORT = None
 LISTEN = None
 CONNECTS = 0
 THREAD = None
+THREAD_STATUS = 1
 
 BUFFER_SIZE = 1024
 
@@ -132,7 +133,7 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 
 		print("ConnectUsersThread created successfully!")
 
-		while True:
+		while THREAD_STATUS == 1:
 			connect , address = SOCKET.accept()
 			connect_list.append(connect)
 			address_list.append(address)
@@ -220,6 +221,8 @@ def passwordCommand(): # Command <password>
 
 
 def interface():
+	global THREAD_STATUS
+	
 	while True:
 		try:
 			command = str(input("Enter command: "))
@@ -227,6 +230,7 @@ def interface():
 			pass
 
 		if command == 'exit':
+			THREAD_STATUS = 0
 			break		
 		elif command == 'connect':
 			if login() == 1234:
