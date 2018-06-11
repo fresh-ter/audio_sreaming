@@ -80,7 +80,7 @@ def getsetCommand():
 
 	f = open(address, 'w')
 	f.write(str_code.decode("utf-8"))
- 	f.close()
+	f.close()
 
 
 
