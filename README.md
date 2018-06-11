@@ -14,7 +14,7 @@ index.html      | Индексный файл для проверки вноси
 
 `Hello world`
 
-![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.bmp)
+![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.gif)
 
 
 
