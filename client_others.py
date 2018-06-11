@@ -4,6 +4,9 @@ import random
 import socket
 from os import system
 
+NAME_CLIENT = "client main"
+NUMBER_COMPUTER = None
+
 n = 0
 code = 0
 exit = 0
@@ -12,7 +15,13 @@ passwort = "client"
 IP = None    	############################################################################ /=)
 PORT = 9090     ############################################################################ \=)
 
+print("NAME_CLIENT:" + NAME_CLIENT)
 IP = str(input("Enter IP server`s: "))
+NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
+
+f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
+f.write(NUMBER_COMPUTER)
+f.close()
 
 
 def decode(msg):
@@ -71,6 +80,8 @@ if p == passwort:
 	
 	s = socket.socket()
 	s.connect((IP , PORT))
+	s.send(NAME_CLIENT.encode("utf-8"))
+	s.send(str(NUMBER_COMPUTER).encode("utf-8"))
 	
 	print("Hello world!")
 

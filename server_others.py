@@ -12,6 +12,8 @@ SOCKET = socket.socket()
 #   computer    1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19
 connect_list = []
 address_list = []
+name_list = []
+number_list = []
 
 PASSWORT = "hackers"
 IP = None
@@ -33,8 +35,12 @@ STATUS = 0
 #	Commands for <User>
 #
 #	test
+#	color start
 #	color none
 #	color 1
+#	color close
+#	getset start
+#	getset
 #	exit
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -91,9 +97,10 @@ def printHelp(): # Command <help>
 
 def printList(): # Command <list>
 	print()
-	print("________List________")
+	print(" № |________List________")
 	for number in range(CONNECTS):
-		print(number, "|", address_list[number])
+		if number < 10:
+			print(number, " |", address_list[number], "|" name_list[number], "|", number_list[number])
 
 def printConnections(): # Command <connections>
 	print()
@@ -138,8 +145,14 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 
 		while THREAD_STATUS == 1:
 			connect , address = SOCKET.accept()
+
+			name = connect.recv(1024)
+			number = connect.recv(1024)
+
 			connect_list.append(connect)
 			address_list.append(address)
+			name_list.append(name.decode("utf-8"))
+			number_list.append(number.decode("utf-8"))
 
 			CONNECTS += 1
 			STATUS = 3
