@@ -97,6 +97,7 @@ def printHelp(): # Command <help>
 	print("password")
 	print("cls")
 	print("getset")
+	print("send")
 
 def printList(): # Command <list>
 	print()
@@ -292,7 +293,7 @@ def getsetCommand():
 	print("Send <code> (", address, ") .........")
 	sendCommandAllUsers(str_code)
 	print()
-	
+
 	print("Successfully!")
 
 
@@ -308,7 +309,7 @@ def interface():
 		if command == 'exit':
 			if login() == 1234:
 				exitCommand()
-			break		
+				break		
 		elif command == 'connect':
 			if login() == 1234:
 				connectCommand()
