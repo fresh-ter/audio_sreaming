@@ -113,7 +113,6 @@ def commandMsg(msg):
 p = input("Passwort: ")
 
 if p == passwort:
-	
 	print("IP:", IP)
 	print("PORT:", PORT)
 
