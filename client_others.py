@@ -22,7 +22,7 @@ def colorCommand(msg):
 	print("color_disp")
 	if "start" in msg:
 		print("Start color")
-		system("c:\\Python34\\python.exe c:\\audio_streaming\\background.py")
+		system("start c:\\Python34\\python.exe c:\\audio_streaming\\background.py")
 	elif "none" in msg:
 		f = open(r"c:\audio_streaming\a.txt", "w", encoding="utf-8")
 		f.write("none")

@@ -224,7 +224,7 @@ def exitCommand():
 	global THREAD_STATUS
 	THREAD_STATUS = 0
 	s1 = socket.socket()
-	s1.connect(("127.0.0.1", 9090))
+	s1.connect((IP, PORT))
 	s1.close()
 	time.sleep(5)
 
