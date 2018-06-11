@@ -160,8 +160,8 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			# date = connect.recv(BUFFER_SIZE)
 			# print("date:", date)
 
-			# connect_list.append(connect)
-			# address_list.append(address)
+			connect_list.append(connect)
+			address_list.append(address)
 
 			# name_list.append(name.decode("utf-8"))
 			# number_list.append(number.decode("utf-8"))
