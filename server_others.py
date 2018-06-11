@@ -151,21 +151,21 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			print("New connection!")
 			print("Address:", address)
 
-			name = connect.recv(1024)
-			print("name:", name)
+			# name = connect.recv(BUFFER_SIZE)
+			# print("name:", name)
 
-			number = connect.recv(1024)
-			print("number:", number)
+			# number = connect.recv(BUFFER_SIZE)
+			# print("number:", number)
 
-			date = connect.recv(1024)
-			print("date:", date)
+			# date = connect.recv(BUFFER_SIZE)
+			# print("date:", date)
 
-			connect_list.append(connect)
-			address_list.append(address)
+			# connect_list.append(connect)
+			# address_list.append(address)
 
-			name_list.append(name.decode("utf-8"))
-			number_list.append(number.decode("utf-8"))
-			date_list.append(date.decode("utf-8"))
+			# name_list.append(name.decode("utf-8"))
+			# number_list.append(number.decode("utf-8"))
+			# date_list.append(date.decode("utf-8"))
 
 			
 
