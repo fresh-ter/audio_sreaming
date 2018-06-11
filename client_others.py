@@ -20,7 +20,7 @@ IP = str(input("Enter IP server`s: "))
 NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
 
 f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
-f.write(NUMBER_COMPUTER)
+f.write(str(NUMBER_COMPUTER))
 f.close()
 
 

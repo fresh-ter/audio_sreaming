@@ -100,7 +100,7 @@ def printList(): # Command <list>
 	print(" № |________List________")
 	for number in range(CONNECTS):
 		if number < 10:
-			print(number, " |", address_list[number], "|" name_list[number], "|", number_list[number])
+			print(number, " |", address_list[number], "|", name_list[number], "|", number_list[number])
 
 def printConnections(): # Command <connections>
 	print()
