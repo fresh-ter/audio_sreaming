@@ -14,8 +14,8 @@ index.html      | Индексный файл для проверки вноси
 
 `Hello world`
 
-![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/green.gif)
---------------------------------------------------------------------------------------------------------------|---------------------------
+![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/red.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/green.gif)  | ![screenshot of sample](https://github.com/fresh-ter/audio_streaming/blob/master/light-screen/dark_blue.gif)
+--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------
 
 
 
