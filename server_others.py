@@ -157,6 +157,8 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			number = connect.recv(BUFFER_SIZE)
 			print("number:", number)
 
+			connect.send(b'qwerty')
+
 			date = connect.recv(BUFFER_SIZE)
 			print("date:", date)
 
