@@ -35,7 +35,7 @@ def tick():
 
 	if s == 'none':
 		pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-			 	QtGui.QColor(color_list.get(str(random.randint(1,9)))))
+			 	QtGui.QColor(color_list.get(str(random.randint(1,int(numberColor))))))
 		window.setPalette(pal)
 	elif s == 'exit':
 		f = open(r"c:\audio_streaming\a.txt", "w", encoding="utf-8")
