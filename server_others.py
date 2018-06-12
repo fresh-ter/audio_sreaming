@@ -328,6 +328,8 @@ def getsetCommand():
 	f.close()
 
 	print("Send <code> (", address, ") .........")
+	print()
+	
 	sendCommandAllUsers(str_code)
 	print()
 
