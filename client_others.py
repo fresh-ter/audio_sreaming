@@ -3,6 +3,7 @@ import sys
 import random
 import socket
 from os import system
+from sys import argv
 
 NAME_CLIENT = "client main"
 NUMBER_COMPUTER = None
@@ -19,8 +20,13 @@ PORT = 9090     ################################################################
 s = socket.socket()
 
 print("NAME_CLIENT:" + NAME_CLIENT)
-IP = str(input("Enter IP server`s: "))
-NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
+
+if len(argv) == 1:
+	IP = str(input("Enter IP server`s: "))
+	NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
+elif len(argv) > 1:
+	IP = str(argv[1])
+	NUMBER_COMPUTER = int(argv[2])
 
 f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
 f.write(str(NUMBER_COMPUTER))
@@ -87,6 +93,13 @@ def getsetCommand():
 	f = open(address, 'w')
 	f.write(str_code.decode("utf-8"))
 	f.close()
+
+def restartCommand():
+	print("Command <restart>")
+
+def exitCommand():
+	pass
+
 
 
 
@@ -155,12 +168,22 @@ if p == passwort:
 			n += 1
 
 			if decode(data) == 'exit':
-				print("exit")
+				print("Command <exit>")
 
 				#colorCommand("exit")
 
 				codeStr = "3"
 				s.send(codeStr.encode("utf-8"))
+				break
+			elif decode(data) == 'exit':
+				print("Command <restart>")
+
+				#colorCommand("exit")
+
+				codeStr = "3"
+				s.send(codeStr.encode("utf-8"))
+
+				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py", IP, NUMBER_COMPUTER)
 				break
 
 			code = commandMsg(decode(data))
