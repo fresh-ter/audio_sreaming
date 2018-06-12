@@ -409,6 +409,7 @@ def createSocket():
 	print()
 	print("Creating Socket...")
 
+	SOCKET = socket.socket()
 	SOCKET.bind((IP , PORT))
 	SOCKET.listen(LISTEN)
 
