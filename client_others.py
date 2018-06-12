@@ -187,7 +187,7 @@ if p == passwort:
 				codeStr = "3"
 				s.send(codeStr.encode("utf-8"))
 
-				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py", IP, NUMBER_COMPUTER)
+				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py" + str(IP) + str(NUMBER_COMPUTER))
 				break
 
 			code = commandMsg(decode(data))
