@@ -28,7 +28,7 @@ if len(argv) == 1:
 elif len(argv) > 1:
 	print("-------------------------------------CMD-------------------------------------")
 	print("Loading...")
-	time.sleep(50)
+	time.sleep(60)
 	IP = str(argv[1])
 	NUMBER_COMPUTER = int(argv[2])
 
@@ -190,6 +190,10 @@ if p == passwort:
 				s.send(codeStr.encode("utf-8"))
 
 				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py" + ' ' + str(IP) + ' ' + str(NUMBER_COMPUTER))
+
+				s.close()
+
+				system("exit")
 				break
 
 			code = commandMsg(decode(data))
