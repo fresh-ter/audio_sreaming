@@ -98,6 +98,7 @@ def printHelp(): # Command <help>
 	print("cls")
 	print("getset")
 	print("send")
+	print("reset")
 
 def printList(): # Command <list>
 	print()
@@ -178,14 +179,47 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			CONNECTS += 1
 			STATUS = 3
 
+		print("ConnectUsersThread destroy!")
+
+def resetList():
+	global connect_list
+	global address_list
+	global name_list
+	global number_list
+	global date_list
+	global PASSWORT
+	global IP
+	global PORT
+	global LISTEN
+	global CONNECTS
+	global THREAD
+	global THREAD_STATUS
+	global BUFFER_SIZE
+
+	connect_list = []
+	address_list = []
+	name_list = []
+	number_list = []
+	date_list = []
+
+	PASSWORT = "hackers"
+	IP = None
+	PORT = None
+	LISTEN = None
+	CONNECTS = 0
+	THREAD = None
+	THREAD_STATUS = 1
+
+	BUFFER_SIZE = 1024
+
 def connectCommand(): # Command <connect>
 	global THREAD
 	global STATUS
 
+	STATUS = 2
+
 	THREAD = ConnectUsersThread()
 	THREAD.start()
-
-	STATUS = 2
 
 def sendCommandAllUsers(msg): # msg != msg.encode("utf-8")
 	print("________Send all <User>________")
@@ -258,10 +292,13 @@ def passwordCommand(): # Command <password>
 
 def exitCommand():
 	global THREAD_STATUS
+
 	THREAD_STATUS = 0
+
 	s1 = socket.socket()
 	s1.connect((IP, PORT))
 	s1.close()
+
 	time.sleep(5)
 
 def clsCommand():
@@ -296,6 +333,16 @@ def getsetCommand():
 
 	print("Successfully!")
 
+def resetCommand():
+	global STATUS
+
+	exitCommand()
+	resetList()
+	destroySocket()
+
+	STATUS = 0
+
+	createSocket()
 
 def interface():
 	
@@ -336,6 +383,9 @@ def interface():
 		elif command == 'getset':
 			if login() == 1234:
 				getsetCommand()
+		elif command == 'reset':
+			if login() == 1234:
+				resetCommand()
 		elif not command:
 			print("You not enter command!")
 			continue
