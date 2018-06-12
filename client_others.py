@@ -128,9 +128,9 @@ def commandMsg(msg):
 
 
 
-if argv == 1:
+if len(argv) == 1:
 	p = input("Passwort: ")
-elif argv > 1:
+elif len(argv) > 1:
 	p = passwort
 
 print()
@@ -189,7 +189,7 @@ if p == passwort:
 				codeStr = "3"
 				s.send(codeStr.encode("utf-8"))
 
-				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py" + str(IP) + str(NUMBER_COMPUTER))
+				system("start c:\\Python34\\python.exe c:\\audio_streaming\\client_others.py" + ' ' + str(IP) + ' ' + str(NUMBER_COMPUTER))
 				break
 
 			code = commandMsg(decode(data))
