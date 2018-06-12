@@ -128,8 +128,10 @@ def commandMsg(msg):
 
 
 
-
-p = input("Passwort: ")
+if argv == 1:
+	p = input("Passwort: ")
+elif argv > 1:
+	p = passwort
 
 print()
 print()
