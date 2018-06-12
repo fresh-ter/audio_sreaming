@@ -2,6 +2,7 @@
 import sys
 import random
 import socket
+import time
 from os import system
 from sys import argv
 
@@ -25,6 +26,9 @@ if len(argv) == 1:
 	IP = str(input("Enter IP server`s: "))
 	NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
 elif len(argv) > 1:
+	print("-------------------------------------CMD-------------------------------------")
+	print("Loading...")
+	time.sleep(50)
 	IP = str(argv[1])
 	NUMBER_COMPUTER = int(argv[2])
 
@@ -175,7 +179,7 @@ if p == passwort:
 				codeStr = "3"
 				s.send(codeStr.encode("utf-8"))
 				break
-			elif decode(data) == 'exit':
+			elif decode(data) == 'restart':
 				print("Command <restart>")
 
 				#colorCommand("exit")
