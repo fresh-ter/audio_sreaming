@@ -161,7 +161,7 @@ if p == passwort:
 	print()
 	print()
 	
-	print("Hello world!")
+	print("Connection successfully!")
 	print()
 	print("-------------------------------------")
 
