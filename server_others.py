@@ -336,6 +336,9 @@ def getsetCommand():
 def resetCommand():
 	global STATUS
 
+	print()
+	print("________RESET________")
+
 	exitCommand()
 	resetList()
 	destroySocket()
