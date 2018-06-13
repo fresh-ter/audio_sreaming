@@ -25,16 +25,18 @@ print("NAME_CLIENT:" + NAME_CLIENT)
 if len(argv) == 1:
 	IP = str(input("Enter IP server`s: "))
 	NUMBER_COMPUTER = int(input("Enter NUMBER_COMPUTER: "))
+
+	f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
+	f.write(str(NUMBER_COMPUTER))
+	f.close()
 elif len(argv) > 1:
 	print("-------------------------------------CMD-------------------------------------")
 	print("Loading...")
-	time.sleep(60)
+	time.sleep(120)
 	IP = str(argv[1])
 	NUMBER_COMPUTER = int(argv[2])
 
-f = open(r"c:\audio_streaming\number_computer.txt", "w", encoding="utf-8")
-f.write(str(NUMBER_COMPUTER))
-f.close()
+
 
 f = open(r"c:\audio_streaming\date.txt", "r", encoding="utf-8")
 DATE = str(f.read())
