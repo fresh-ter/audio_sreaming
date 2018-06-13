@@ -105,12 +105,11 @@ def printList(): # Command <list>
 	print(" № |          List")
 	print("---|------------------------------------------------")
 	for number in range(CONNECTS):
-		if number < 10:
-			print(number, " |", address_list[number], "|", name_list[number], "|", number_list[number], "|", date_list[number])
+		print(number, " |", address_list[number], "|", name_list[number], "|", number_list[number], "|", date_list[number])
 
 def printConnections(): # Command <connections>
 	print()
-	print("________Connections________")
+	print("________Connections = " + str(CONNECTS) + "________")
 	for number in range(CONNECTS):
 		obj = connect_list[number]
 		obj.send(str("test").encode('utf-8'))
