@@ -152,19 +152,19 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 		while THREAD_STATUS == 1:
 			connect , address = SOCKET.accept()
 
-			#print("New connection!")
-			#print("Address:", address)
+			print("New connection!")
+			print("Address:", address)
 
 			name = connect.recv(BUFFER_SIZE)
-			#print("name:", name)
+			print("name:", name)
 
 			number = connect.recv(BUFFER_SIZE)
-			#print("number:", number)
+			print("number:", number)
 
 			connect.send(b'qwerty')
 
 			date = connect.recv(BUFFER_SIZE)
-			#print("date:", date)
+			print("date:", date)
 
 			connect_list.append(connect)
 			address_list.append(address)
