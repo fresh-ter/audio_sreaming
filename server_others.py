@@ -169,13 +169,9 @@ class ConnectUsersThread(threading.Thread): # ConnectUsersThread
 			name_list.append(name.decode("utf-8"))
 			number_list.append(number.decode("utf-8"))
 			date_list.append(date.decode("utf-8"))
-
 			
-
-
 			CONNECTS += 1
 			STATUS = 3
-
 		print("ConnectUsersThread destroy!")
 
 def resetList():
