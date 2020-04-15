@@ -12,10 +12,10 @@ window.setWindowTitle("Hallo PyQt und Color")
 window.resize(300 , 100)
 
 
-with open(r"c:\audio_streaming\color.txt", 'r', encoding='utf-8') as f:
+with open("color.txt", 'r', encoding='utf-8') as f:
     color_list = json.load(f)
 
-with open(r"c:\audio_streaming\number_color.txt", 'r', encoding='utf-8') as f:
+with open("number_color.txt", 'r', encoding='utf-8') as f:
     numberColor = json.load(f)
 
 pal = window.palette()
@@ -29,7 +29,7 @@ window.setPalette(pal)
 def tick():
 	s = ''
 	
-	f = open(r"c:\audio_streaming\a.txt", "r", encoding="utf-8")
+	f = open("a.txt", "r", encoding="utf-8")
 	for line in f:
 		s += line
 
@@ -38,7 +38,7 @@ def tick():
 			 	QtGui.QColor(color_list.get(str(random.randint(1,int(numberColor))))))
 		window.setPalette(pal)
 	elif s == 'exit':
-		f = open(r"c:\audio_streaming\a.txt", "w", encoding="utf-8")
+		f = open("a.txt", "w", encoding="utf-8")
 		f.write("none")
 		f.close()
 		sys.exit(app.exec_())
