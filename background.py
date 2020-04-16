@@ -8,11 +8,10 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from datetime import datetime
 
 
-app = QtWidgets.QApplication(sys.argv)
-ex = None
 
-class Example(QWidget):
-    #pal  = None
+mainWindow = None
+
+class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -25,7 +24,6 @@ class Example(QWidget):
         self.c_s = "#6a5acd"
 
         self.initUI()
-        
 
 
     def initUI(self):
@@ -39,12 +37,11 @@ class Example(QWidget):
                      QtGui.QColor("#ff0000"))
         self.setPalette(self.pal)
 
-        
-
         self.show()
 
         self.timer.timeout.connect(tick)
         self.timer.start(self.time*1000)
+
 
     def keyPressEvent(self, e):
         print(123)
@@ -60,15 +57,10 @@ class Example(QWidget):
         #self.timer.timeout.connect(tick)
         self.timer.setInterval(self.time*1000)
 
-        
         print()
         # if e.key() == Qt.Key_Escape:
         #     self.close()
 
-
-# window = QtWidgets.QWidget()
-# window.
-# window.
 
 # r"c:\audio_streaming\color.txt"
 with open("color.txt", 'r', encoding='utf-8') as f:
@@ -78,12 +70,6 @@ with open("color.txt", 'r', encoding='utf-8') as f:
 with open("number_color.txt", 'r', encoding='utf-8') as f:
     numberColor = json.load(f)
 
-# pal = window.palette()
-# pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-#            QtGui.QColor(color_list.get('2')))
-# pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window,
-#            QtGui.QColor("#ff0000"))
-# window.setPalette(pal)
 
 def pressKey():
     print("Hello!")
@@ -99,16 +85,16 @@ def tick():
     if s == 'none':
         c = str(random.randint(1,int(numberColor)))
 
-        if (c == ex.c_s) and (c != "#800080"):
+        if (c == mainWindow.c_s) and (c != "#800080"):
             c = "#800080"
-        elif (c == ex.c_s) and (c == "#800080"):
+        elif (c == mainWindow.c_s) and (c == "#800080"):
             c = "#6a5acd"
 
-        ex.c_s = c
+        mainWindow.c_s = c
 
-        ex.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
+        mainWindow.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
                 QtGui.QColor(color_list.get(c)))
-        ex.setPalette(ex.pal)
+        mainWindow.setPalette(mainWindow.pal)
     elif s == 'exit':
         f = open("a.txt", "w", encoding="utf-8")
         f.write("none")
@@ -117,23 +103,21 @@ def tick():
     elif s != 'none' and s != 'exit':
         for color in range(numberColor+1):
             if s == str(color):
-                ex.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
+                mainWindow.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
                         QtGui.QColor(color_list.get(str(color))))
-                ex.setPalette(ex.pal)
-
-# timer = QTimer()
-# timer.timeout.connect(tick)
-# timer.start(ex.time*1000)
-
-#window.keyPressEvent.connect(pressKey)
-
-ex = Example()
-
-# timer = QTimer()
-# timer.timeout.connect(tick)
-# timer.start(ex.time*1000)
+                mainWindow.setPalette(mainWindow.pal)
 
 
-ex.show()
+def main():
+    global mainWindow
 
-sys.exit(app.exec_())
+    app = QtWidgets.QApplication(sys.argv)
+
+    mainWindow = MainWindow()
+    mainWindow.show()
+
+    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
