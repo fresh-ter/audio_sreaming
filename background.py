@@ -15,6 +15,12 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
+        with open("color.txt", 'r', encoding='utf-8') as f:
+            self.color_list = json.load(f)
+
+        with open("number_color.txt", 'r', encoding='utf-8') as f:
+            self.numberColor = json.load(f)
+
         self.pal = self.palette()
         self.time = 1
 
@@ -32,14 +38,14 @@ class MainWindow(QWidget):
 
         print(self.pal)
         self.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-                     QtGui.QColor(color_list.get('2')))
+                     QtGui.QColor(self.color_list.get('2')))
         self.pal.setColor(QtGui.QPalette.Inactive, QtGui.QPalette.Window,
                      QtGui.QColor("#ff0000"))
         self.setPalette(self.pal)
 
         self.show()
 
-        self.timer.timeout.connect(tick)
+        self.timer.timeout.connect(self.tick)
         self.timer.start(self.time*1000)
 
 
@@ -62,50 +68,37 @@ class MainWindow(QWidget):
         #     self.close()
 
 
-# r"c:\audio_streaming\color.txt"
-with open("color.txt", 'r', encoding='utf-8') as f:
-    color_list = json.load(f)
+    def tick(self):
+        s = ''
+        
+        f = open("a.txt", "r", encoding="utf-8")
+        for line in f:
+            s += line
 
-# r"c:\audio_streaming\number_color.txt"
-with open("number_color.txt", 'r', encoding='utf-8') as f:
-    numberColor = json.load(f)
+        if s == 'none':
+            c = str(random.randint(1,int(self.numberColor)))
 
+            if (c == self.c_s) and (c != "#800080"):
+                c = "#800080"
+            elif (c == self.c_s) and (c == "#800080"):
+                c = "#6a5acd"
 
-def pressKey():
-    print("Hello!")
+            self.c_s = c
 
-
-def tick():
-    s = ''
-    
-    f = open("a.txt", "r", encoding="utf-8")
-    for line in f:
-        s += line
-
-    if s == 'none':
-        c = str(random.randint(1,int(numberColor)))
-
-        if (c == mainWindow.c_s) and (c != "#800080"):
-            c = "#800080"
-        elif (c == mainWindow.c_s) and (c == "#800080"):
-            c = "#6a5acd"
-
-        mainWindow.c_s = c
-
-        mainWindow.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-                QtGui.QColor(color_list.get(c)))
-        mainWindow.setPalette(mainWindow.pal)
-    elif s == 'exit':
-        f = open("a.txt", "w", encoding="utf-8")
-        f.write("none")
-        f.close()
-        sys.exit(app.exec_())
-    elif s != 'none' and s != 'exit':
-        for color in range(numberColor+1):
-            if s == str(color):
-                mainWindow.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
-                        QtGui.QColor(color_list.get(str(color))))
-                mainWindow.setPalette(mainWindow.pal)
+            self.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
+                    QtGui.QColor(self.color_list.get(c)))
+            self.setPalette(self.pal)
+        elif s == 'exit':
+            f = open("a.txt", "w", encoding="utf-8")
+            f.write("none")
+            f.close()
+            sys.exit(app.exec_())
+        elif s != 'none' and s != 'exit':
+            for color in range(self.numberColor+1):
+                if s == str(color):
+                    self.pal.setColor(QtGui.QPalette.Normal, QtGui.QPalette.Window,
+                            QtGui.QColor(self.color_list.get(str(color))))
+                    self.setPalette(self.pal)
 
 
 def main():
