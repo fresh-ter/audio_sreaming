@@ -27,7 +27,7 @@ class MainWindow(QWidget):
         self.to = 0
 
         self.timer = QTimer()
-        self.c_s = "#6a5acd"
+        self.c_s = -1
 
         self.initUI()
 
@@ -78,10 +78,8 @@ class MainWindow(QWidget):
         if s == 'none':
             c = str(random.randint(1,int(self.numberColor)))
 
-            if (c == self.c_s) and (c != "#800080"):
-                c = "#800080"
-            elif (c == self.c_s) and (c == "#800080"):
-                c = "#6a5acd"
+            while self.c_s == c:
+                c = str(random.randint(1,int(self.numberColor)))
 
             self.c_s = c
 
