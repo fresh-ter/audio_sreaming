@@ -105,7 +105,11 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
 
     mainWindow = MainWindow()
-    mainWindow.show()
+
+    if len(sys.argv) > 1 and sys.argv[1] == 'fullscreen':    
+        mainWindow.showFullScreen()
+    else:
+        mainWindow.show()
 
     sys.exit(app.exec_())
 
